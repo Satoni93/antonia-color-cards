@@ -1,0 +1,78 @@
+$base-color: #0F9988;
+$base-size: 400px;
+$font-family: Helvetica, sans-serif;
+
+body{
+  @extend %flex-center;
+  @extend %font-face;
+  height: 100vh;
+}
+
+%flex-center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+%font-face{
+  font-family: $font-family;
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: 200;
+  color: rgb(255, 255, 255);
+}
+
+%color-card{
+  @extend %flex-center;
+  background: $base-color;
+  width: $base-size;
+  height: $base-size;
+}
+
+@mixin size($width, $height:$width){
+  width: $width;
+  height: $height;
+}
+
+.lighter{
+  @extend %color-card;
+  @include size($base-size * .8);
+  background: lighten($base-color, 10%);
+  &:after{
+    content: "("+lighten($base-color, 10%)+")";
+  }
+}
+
+.light{
+  @extend %color-card;
+  @include size($base-size * .9);
+  background: lighten($base-color, 5%);
+  &:after{
+    content: "("+lighten($base-color, 5%)+")";
+  }
+}
+
+.base{
+  @extend %color-card;
+  &:after{
+    content: "("+$base-color")";
+  }
+}
+
+.dark{
+  @extend %color-card;
+  @include size($base-size * .9);
+  background: darken($base-color, 5%);
+  &:after{
+    content: "("+darken($base-color, 5%)+")";
+  }
+}
+
+.darker{
+  @extend %color-card;
+    @include size($base-size * .8);
+  background: darken($base-color, 10%);
+  &:after{
+    content: "("+darken($base-color, 10%)+")";
+  }
+}
